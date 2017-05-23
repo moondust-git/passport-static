@@ -1,12 +1,14 @@
 import {BrowserModule} from "@angular/platform-browser";
 import {NgModule} from "@angular/core";
-import {FormsModule} from "@angular/forms";
 import {HttpModule} from "@angular/http";
+
 import {AppComponent} from "./app.component";
-// / Import the Animations module
-import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {AppRoute} from "./app.route";
-import {OauthService} from "./provider/oauth.service";
+import "rxjs/add/operator/map";
+import "rxjs/add/operator/catch";
+import {Ng2BootstrapModule} from "ngx-bootstrap";
+import {LoadingModule} from "./modules/loading/loading.module";
+import {PopupsModule} from "./modules/popups/popups.module";
 
 @NgModule({
   declarations: [
@@ -14,12 +16,12 @@ import {OauthService} from "./provider/oauth.service";
   ],
   imports: [
     BrowserModule,
-    FormsModule,
     HttpModule,
-    AppRoute,
-    BrowserAnimationsModule
+    LoadingModule.forRoot(),
+    PopupsModule.forRoot(),
+    AppRoute
   ],
-  providers: [OauthService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule {

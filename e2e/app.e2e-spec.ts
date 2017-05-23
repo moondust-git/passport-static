@@ -1,10 +1,10 @@
-import { PassportStaticPage } from './app.po';
+import { MoondustStaticPage } from './app.po';
 
-describe('passport-static App', () => {
-  let page: PassportStaticPage;
+describe('moondust-static App', () => {
+  let page: MoondustStaticPage;
 
   beforeEach(() => {
-    page = new PassportStaticPage();
+    page = new MoondustStaticPage();
   });
 
   it('should display message saying app works', () => {

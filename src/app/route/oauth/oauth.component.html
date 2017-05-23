@@ -1,17 +1,21 @@
-<div class="col-lg-4 offset-lg-4 login_container">
-  <div class="card text">
-    <div class="card-block">
-      <div class="card-title text-center">
-        <h3>登录</h3>
-      </div>
-      <div class="form-group">
-        <input type="text" class="form-control form-control-sm text-center" placeholder="用户名">
-      </div>
-      <div class="form-group">
-        <input type="password" class="form-control form-control-sm text-center" placeholder="密码">
-      </div>
-      <button class="btn btn-outline-success  btn-sm btn-block">登录</button>
-      <button class="btn btn-outline-success btn-sm btn-block">注册</button>
-    </div>
+<div class="col-md-4 col-lg-3 justify-content-center" *ngIf="client">
+  <p>
+    {{client.client_id}}
+  </p>
+  <div class="form-group">
+    <input type="text" class="form-control" [(ngModel)]="formOauth.username" name="username" placeholder="用户名">
   </div>
+  <div class="form-group">
+    <input type="password" class="form-control" [(ngModel)]="formOauth.password" name="password" placeholder="密码">
+  </div>
+  <div class="form-group">
+    <button class="btn btn-success btn-block" (click)="doLogin()">登陆</button>
+    <button class="btn btn-success btn-block">注册</button>
+  </div>
+  <alert>
+    asdas
+  </alert>
 </div>
+
+
+

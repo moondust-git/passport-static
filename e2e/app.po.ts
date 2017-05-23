@@ -1,6 +1,6 @@
 import { browser, element, by } from 'protractor';
 
-export class PassportStaticPage {
+export class MoondustStaticPage {
   navigateTo() {
     return browser.get('/');
   }

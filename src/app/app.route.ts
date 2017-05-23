@@ -1,19 +1,16 @@
-import {NgModule} from "@angular/core";
-import {RouterModule} from "@angular/router";
 /**
- * Created by Tristan on 17/5/19.
+ * Created by tc949 on 2017/4/5.
  */
-
+import {NgModule} from "@angular/core";
+import {RouterModule, Routes} from "@angular/router";
+const routes: Routes = [
+  {path:"",redirectTo:"index.html",pathMatch:"full"},
+  {path:"index.html",loadChildren:"./route/index/index.module#IndexModule"},
+  {path:"oauth.html",loadChildren:"./route/oauth/oauth.module#OauthModule"},
+];
 @NgModule({
-  imports: [
-    RouterModule.forRoot(
-      [
-        {path: '', loadChildren: './route/oauth/oauth.module#OauthModule'}
-      ]
-    )
-  ],
+  imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
 export class AppRoute {
-
 }

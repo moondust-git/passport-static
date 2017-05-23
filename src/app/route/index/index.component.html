@@ -1,0 +1,13 @@
+<div class="col-md-6">
+  <ngx-alert>
+    <strong>Well done!</strong> You successfully read this important alert message.
+  </ngx-alert>
+  <button class="btn"
+          [routerLink]="['/oauth.html',{client_id:'47eb6a69-59df-40f7-a541-22189ab33257',redirect_uri:'http://localhost:8080/demo',scope:'read'}]">
+    ok
+  </button>
+</div>
+<div class="col-md-6">
+  <button class="btn" (click)="alertTest()">alert</button>
+  <button type="button" class="btn btn-primary" (click)="pop.alert('asdas')">Static modal</button>
+</div>
