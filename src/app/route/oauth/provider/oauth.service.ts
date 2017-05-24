@@ -1,6 +1,6 @@
-import {Injectable} from "@angular/core";
-import {HOST} from "../../../utils/Variables";
-import {Http} from "@angular/http";
+import {Injectable} from '@angular/core';
+import {HOST} from '../../../utils/Variables';
+import {Http} from '@angular/http';
 
 @Injectable()
 export class OauthService {
@@ -18,7 +18,7 @@ export class OauthService {
       redirect_uri: client.redirect_uri,
       state: client.state
     };
-    console.log(params)
+    console.log(params);
     return this.http.post(HOST + '/api/oauth/authorize.md', params, null).map(res => res.json());
   }
 }

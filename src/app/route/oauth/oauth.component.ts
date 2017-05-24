@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {OauthService} from "./provider/oauth.service";
-import {ActivatedRoute} from "@angular/router";
-import {PopupService} from "../../modules/popups/services/popup.service";
-import {LoadingService} from "../../modules/loading/provider/loading.service";
+import {OauthService} from './provider/oauth.service';
+import {ActivatedRoute} from '@angular/router';
+import {PopupService} from '../../modules/cpts/popups/services/popup.service';
+import {LoadingService} from '../../modules/cpts/loading/provider/loading.service';
 
 @Component({
   selector: 'app-oauth.row',
@@ -22,25 +22,26 @@ export class OauthComponent implements OnInit {
 
   ngOnInit() {
     this.route.params.subscribe(params => {
-      let p = {
+      const param = {
         redirect_uri: params['redirect_uri'],
         client_id: params['client_id'],
         scope: params['scope']
       };
-      this.oauthService.getClientInfo(p).subscribe(res => {
+      this.oauthService.getClientInfo(param).subscribe(res => {
         this.loading.close();
         this.client = res;
       }, err => {
         this.loading.close().ok(() => {
           this.pop.alert(JSON.stringify(err)).ok(() => {
           });
-        })
-      })
-    })
+        });
+      });
+    });
   }
+
   doLogin() {
     this.oauthService.doLogin(this.formOauth, this.client).subscribe(res => {
-    })
+    });
   }
 }
 

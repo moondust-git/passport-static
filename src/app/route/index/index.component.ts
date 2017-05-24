@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {PopupService} from "../../modules/popups/services/popup.service";
-import {LoadingService} from "../../modules/loading/provider/loading.service";
+import {PopupService} from '../../modules/cpts/popups';
+import {LoadingService} from '../../modules/cpts/loading';
 
 @Component({
-  selector: 'route-index.row',
+  selector: 'app-route-index.row',
   templateUrl: './index.component.html',
   styleUrls: ['./index.component.css']
 })
@@ -14,8 +14,11 @@ export class IndexComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.pop.alert("asdas").ok(()=>{
+    this.pop.alert('asdas').ok(() => {
 
-    })
+    });
+  }
+  loadingAlert() {
+    this.loading.show();
   }
 }
