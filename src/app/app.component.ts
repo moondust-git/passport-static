@@ -2,7 +2,7 @@ import {Component} from '@angular/core';
 
 @Component({
   selector: 'app-root',
-  template: '<div class="container-fluid"><router-outlet></router-outlet></div><md-popup></md-popup><md-loading></md-loading>'
+  template: '<div class="container-fluid"><router-outlet></router-outlet></div>'
 })
 
 export class AppComponent {

@@ -6,8 +6,6 @@ import {AppComponent} from './app.component';
 import {AppRoute} from './app.route';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
-import {LoadingModule} from './modules/cpts/loading/loading.module';
-import {PopupsModule} from './modules/cpts/popups/popups.module';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 @NgModule({
@@ -18,8 +16,6 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     BrowserModule,
     BrowserAnimationsModule,
     HttpModule,
-    LoadingModule.forRoot(),
-    PopupsModule.forRoot(),
     AppRoute
   ],
   providers: [],

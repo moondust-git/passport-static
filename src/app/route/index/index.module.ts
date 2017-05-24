@@ -1,15 +1,13 @@
-import {NgModule} from '@angular/core';
-import {CommonModule} from '@angular/common';
-import {RouterModule} from '@angular/router';
-import {IndexComponent} from './index.component';
-import {Ng2BootstrapModule, TooltipModule} from 'ngx-bootstrap';
-import {MdTooltipModule} from '../../modules/cpts/tooltip';
+import {NgModule} from "@angular/core";
+import {CommonModule} from "@angular/common";
+import {RouterModule} from "@angular/router";
+import {IndexComponent} from "./index.component";
+import {Ng2BootstrapModule} from "ngx-bootstrap";
 
 @NgModule({
   imports: [
     CommonModule,
     Ng2BootstrapModule.forRoot(),
-    MdTooltipModule,
     RouterModule.forChild([
       {path: '', component: IndexComponent}
     ])
