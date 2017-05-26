@@ -1,0 +1,56 @@
+.sidenav {
+  position: fixed;
+  background-color: white;
+  @include box-shadow(0 0 5px 1px rgba(#000, 0.3));
+  @include transition(all 0.3s);
+  &.left {
+    left: 0;
+    @include translateX(-100%);
+  }
+  &.right {
+    right: 0;
+    @include translateX(100%);
+  }
+  &.left, &.right {
+    top: 0;
+    bottom: 0;
+    @include transition(all 0.3s);
+    &.open {
+      @include translateX(0);
+      @include transition(all 0.3s);
+    }
+  }
+
+  &.top, &.bottom {
+    left: 0;
+    right: 0;
+    @include transition(all 0.3s);
+    &.open {
+      @include translateY(0);
+      @include transition(all 0.3s);
+    }
+  }
+  &.top {
+    @include translateY(-100%);
+    top: 0;
+  }
+  &.bottom {
+    @include translateY(100%);
+    bottom: 0;
+  }
+}
+
+.sidenav-shadow {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: none;
+  &.fadebg {
+    background-color: rgba(#000, 0.1);
+  }
+  &.open {
+    display: block;
+  }
+}

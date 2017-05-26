@@ -1,8 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {OauthService} from './provider/oauth.service';
 import {ActivatedRoute} from '@angular/router';
-import {PopupService} from '../../modules/cpts/popups/services/popup.service';
-import {LoadingService} from '../../modules/cpts/loading/provider/loading.service';
 
 @Component({
   selector: 'app-oauth.row',
@@ -14,10 +12,7 @@ export class OauthComponent implements OnInit {
   formOauth: { username: string, password: string } = {username: '', password: ''};
 
   constructor(private oauthService: OauthService,
-              private route: ActivatedRoute,
-              private loading: LoadingService,
-              private pop: PopupService) {
-    this.loading.show();
+              private route: ActivatedRoute) {
   }
 
   ngOnInit() {
@@ -28,13 +23,8 @@ export class OauthComponent implements OnInit {
         scope: params['scope']
       };
       this.oauthService.getClientInfo(param).subscribe(res => {
-        this.loading.close();
         this.client = res;
       }, err => {
-        this.loading.close().ok(() => {
-          this.pop.alert(JSON.stringify(err)).ok(() => {
-          });
-        });
       });
     });
   }

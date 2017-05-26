@@ -7,6 +7,8 @@ import {AppRoute} from './app.route';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {TSidenavModule} from "../Tui/components/sidenav/sidenav.module";
+import {TTimepickerModule} from "../Tui/components/timepicker/timepicker.module";
 
 @NgModule({
   declarations: [
@@ -16,6 +18,8 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     BrowserModule,
     BrowserAnimationsModule,
     HttpModule,
+    TSidenavModule.forRoot(),
+    TTimepickerModule.forRoot(),
     AppRoute
   ],
   providers: [],
