@@ -2,6 +2,7 @@
 /* line 1, _sidenav.scss */
 .sidenav {
   position: fixed;
+  z-index: 1032;
   background-color: white;
   -moz-box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.3);
   -webkit-box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.3);
@@ -11,7 +12,7 @@
   -webkit-transition: all 0.3s;
   transition: all 0.3s;
 }
-/* line 6, _sidenav.scss */
+/* line 7, _sidenav.scss */
 .sidenav.left {
   left: 0;
   -moz-transform: translateX(-100%);
@@ -19,7 +20,7 @@
   -webkit-transform: translateX(-100%);
   transform: translateX(-100%);
 }
-/* line 10, _sidenav.scss */
+/* line 11, _sidenav.scss */
 .sidenav.right {
   right: 0;
   -moz-transform: translateX(100%);
@@ -27,7 +28,7 @@
   -webkit-transform: translateX(100%);
   transform: translateX(100%);
 }
-/* line 14, _sidenav.scss */
+/* line 15, _sidenav.scss */
 .sidenav.left, .sidenav.right {
   top: 0;
   bottom: 0;
@@ -36,7 +37,7 @@
   -webkit-transition: all 0.3s;
   transition: all 0.3s;
 }
-/* line 18, _sidenav.scss */
+/* line 19, _sidenav.scss */
 .sidenav.left.open, .sidenav.right.open {
   -moz-transform: translateX(0);
   -ms-transform: translateX(0);
@@ -47,7 +48,7 @@
   -webkit-transition: all 0.3s;
   transition: all 0.3s;
 }
-/* line 24, _sidenav.scss */
+/* line 25, _sidenav.scss */
 .sidenav.top, .sidenav.bottom {
   left: 0;
   right: 0;
@@ -56,7 +57,7 @@
   -webkit-transition: all 0.3s;
   transition: all 0.3s;
 }
-/* line 28, _sidenav.scss */
+/* line 29, _sidenav.scss */
 .sidenav.top.open, .sidenav.bottom.open {
   -moz-transform: translateY(0);
   -ms-transform: translateY(0);
@@ -67,7 +68,7 @@
   -webkit-transition: all 0.3s;
   transition: all 0.3s;
 }
-/* line 33, _sidenav.scss */
+/* line 34, _sidenav.scss */
 .sidenav.top {
   -moz-transform: translateY(-100%);
   -ms-transform: translateY(-100%);
@@ -75,7 +76,7 @@
   transform: translateY(-100%);
   top: 0;
 }
-/* line 37, _sidenav.scss */
+/* line 38, _sidenav.scss */
 .sidenav.bottom {
   -moz-transform: translateY(100%);
   -ms-transform: translateY(100%);
@@ -84,7 +85,7 @@
   bottom: 0;
 }
 
-/* line 43, _sidenav.scss */
+/* line 44, _sidenav.scss */
 .sidenav-shadow {
   position: fixed;
   top: 0;
@@ -92,12 +93,13 @@
   right: 0;
   bottom: 0;
   display: none;
+  z-index: 1032;
 }
-/* line 50, _sidenav.scss */
+/* line 52, _sidenav.scss */
 .sidenav-shadow.fadebg {
   background-color: rgba(0, 0, 0, 0.1);
 }
-/* line 53, _sidenav.scss */
+/* line 55, _sidenav.scss */
 .sidenav-shadow.open {
   display: block;
 }

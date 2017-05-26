@@ -10,7 +10,7 @@ export class TimepickerConfig {
   /** if true works in 12H mode and displays AM/PM. If false works in 24H mode and hides AM/PM */
   public showMeridian: boolean = true;
   /** meridian labels based on locale */
-  public meridians: string[] = ['下午', '上午'];
+  public meridians: string[] = ['早', '晚'];
   /** if true hours and minutes fields will be readonly */
   public readonlyInput: boolean = false;
   /** if true scroll inside hours and minutes inputs will change time */

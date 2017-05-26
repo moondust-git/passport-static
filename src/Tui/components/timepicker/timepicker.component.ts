@@ -242,15 +242,21 @@ export class TimepickerComponent implements ControlValueAccessor, OnInit {
     }
   }
 
-  public incrementMinutes(): void {
+  public incrementMinutes(step?: number): void {
     if (!this.noIncrementMinutes()) {
-      this.addMinutesToSelected(this.minuteStep);
+      if (step === null || typeof(step) === 'undefined') {
+        step = this.minuteStep;
+      }
+      this.addMinutesToSelected(step);
     }
   }
 
-  public decrementMinutes(): void {
+  public decrementMinutes(step?: number): void {
     if (!this.noDecrementMinutes()) {
-      this.addMinutesToSelected(-this.minuteStep);
+      if (step === null || typeof(step) === 'undefined') {
+        step = this.minuteStep;
+      }
+      this.addMinutesToSelected(-step);
     }
   }
 
