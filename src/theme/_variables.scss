@@ -5,3 +5,12 @@ $modal-animation-color: #0275d8 !default;
 
 //tooltip
 $tooltip-opacity: .6 !default;
+
+$zindex-sidenav: 1032;
+$zindex-sidenav-shadow: 1032;
+
+//modal
+$modal-transition: all .2s ease-out !default;
+$modal-backdrop-opacity: 0.2 !default;
+$modal-content-border-width: 1px !default;
+$modal-content-border-color: rgba(#000, .1) !default;

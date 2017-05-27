@@ -31,6 +31,10 @@ export interface TModalOptions {
    * Custom class to append to the modal window
    */
   windowClass?: string;
+
+  windowanimation?: string ;
+
+  backdropnamintion?: string;
 }
 
 /**

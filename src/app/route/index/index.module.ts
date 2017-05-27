@@ -1,31 +1,35 @@
 import {NgModule} from "@angular/core";
 import {CommonModule} from "@angular/common";
 import {RouterModule} from "@angular/router";
-import {IndexComponent, NgbdModalContent} from "./index.component";
+import {IndexComponent} from "./index.component";
 import {FormsModule} from "@angular/forms";
 import {TModalModule} from "../../../Tui/components/modal/modal.module";
 import {TConfirmModule} from "../../../Tui/components/confirm/confirm.module";
 import {TTimepickerModule} from "../../../Tui/components/timepicker/timepicker.module";
 import {TPopoverModule} from "../../../Tui/components/popover/popover.module";
-import {TSidenav} from "../../../Tui/components/sidenav/TSideNav";
 import {TSidenavModule} from "../../../Tui/components/sidenav/sidenav.module";
+import {TProgressbarModule} from "../../../Tui/components/progressbar/progressbar.module";
+import {TCollapseModule} from "../../../Tui/components/collapse/collapse.module";
+
 
 @NgModule({
   imports: [
     CommonModule,
-    TModalModule.forRoot(),
     FormsModule,
+    TModalModule.forRoot(),
     TConfirmModule.forRoot(),
     TTimepickerModule.forRoot(),
+    TProgressbarModule.forRoot(),
     TPopoverModule.forRoot(),
     TSidenavModule.forRoot(),
+    TCollapseModule.forRoot(),
     RouterModule.forChild([
       {path: '', component: IndexComponent}
     ])
   ],
-  declarations: [IndexComponent, NgbdModalContent],
+  declarations: [IndexComponent],
   providers: [],
-  entryComponents: [NgbdModalContent]
+  entryComponents: []
 })
 export class IndexModule {
 }

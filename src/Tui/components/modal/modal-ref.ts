@@ -16,6 +16,7 @@ export class TActiveModal {
    */
   close(result?: any): void {
   }
+
   /**
    * Can be used to dismiss a modal, passing an optional reason.
    */
@@ -55,7 +56,6 @@ export class NgbModalRef {
     _windowCmptRef.instance.dismissEvent.subscribe((reason: any) => {
       this.dismiss(reason);
     });
-
     this.result = new Promise((resolve, reject) => {
       this._resolve = resolve;
       this._reject = reject;
@@ -76,8 +76,12 @@ export class NgbModalRef {
    */
   dismiss(reason?: any): void {
     if (this._windowCmptRef) {
-      this._reject(reason);
-      this._removeModalElements();
+      this._windowCmptRef.instance.hideAnimation();
+      if (this._backdropCmptRef) this._backdropCmptRef.instance.hideAnimation();
+      setTimeout(() => {
+        this._reject(reason);
+        this._removeModalElements();
+      }, 300);
     }
   }
 

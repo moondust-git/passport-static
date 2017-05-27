@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "ng": "ng",
+    "ng": "concurrently \"npm run style \" \" npm run start\"",
     "start": "ng serve -p 4201",
     "build": "ng build",
     "test": "ng test",

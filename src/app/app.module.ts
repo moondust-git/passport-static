@@ -9,10 +9,12 @@ import 'rxjs/add/operator/catch';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {TSidenavModule} from "../Tui/components/sidenav/sidenav.module";
 import {TTimepickerModule} from "../Tui/components/timepicker/timepicker.module";
+import { ComponentDemoComponent } from './route/component-demo/component-demo.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ComponentDemoComponent,
   ],
   imports: [
     BrowserModule,

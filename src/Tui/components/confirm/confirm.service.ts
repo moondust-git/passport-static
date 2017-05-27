@@ -10,7 +10,7 @@ export class TConfirm {
   private config: TModalOptions;
 
   constructor(private modal: TModal) {
-    this.config = {backdrop: 'static', container: 'body', keyboard: false, size: 'sm'};
+    this.config = {backdrop: false, container: 'body', keyboard: false, size: 'sm'};
   }
 
   confirm(opt: any): ConfirmCallback {

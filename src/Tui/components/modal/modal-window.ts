@@ -13,11 +13,12 @@ import {
 import {ModalDismissReasons} from './modal-dismiss-reasons';
 
 @Component({
-  selector: 'div.moondust-modal-window',
+  selector: 'moondust-modal-window',
   host: {
     '[class]': '"modal fade" + (windowClass ? " " + windowClass : "")',
     'role': 'dialog',
     'tabindex': '-1',
+    // 'style': 'display: none;',
     '(keyup.esc)': 'escKey($event)',
     '(click)': 'backdropClick($event)'
   },
@@ -37,10 +38,18 @@ export class NgbModalWindow implements OnInit,
   @Input() keyboard = true;
   @Input() size: string;
   @Input() windowClass: string;
+  @Input() windowanimation: string = 'fade';
 
   @Output('dismiss') dismissEvent = new EventEmitter();
 
   constructor(private _elRef: ElementRef, private _renderer: Renderer2) {
+    this._elWithFocus = document.activeElement;
+    this._renderer.addClass(document.body, 'modal-open');
+    this._renderer.addClass(this._elRef.nativeElement, 'modal');
+    this._renderer.addClass(this._elRef.nativeElement, this.windowanimation);
+    // this._renderer.setStyle(this._elRef.nativeElement, 'display', 'none');
+    this._renderer.setAttribute(this._elRef.nativeElement, 'aria-hidden', 'false');
+    this._renderer.setProperty(this._elRef.nativeElement, 'scrollTop', 0);
   }
 
   backdropClick($event): void {
@@ -55,31 +64,36 @@ export class NgbModalWindow implements OnInit,
     }
   }
 
-  dismiss(reason): void {
-    console.log('dasd');
 
+  dismiss(reason): void {
     this.dismissEvent.emit(reason);
   }
 
   ngOnInit() {
-    this._elWithFocus = document.activeElement;
-    this._renderer.addClass(document.body, 'modal-open');
+
   }
 
   ngAfterViewInit() {
     if (!this._elRef.nativeElement.contains(document.activeElement)) {
-      this._renderer.addClass(this._elRef.nativeElement, 'show');
-      this._renderer.addClass(this._elRef.nativeElement, 'in');
-      this._renderer.setStyle(this._elRef.nativeElement, 'display', 'block');
-      this._renderer.setProperty(this._elRef.nativeElement, 'scrollTop', 0);
-      this._renderer.setAttribute(this._elRef.nativeElement, 'aria-hidden', 'false');
       this._elRef.nativeElement['focus'].apply(this._elRef.nativeElement, []);
     }
+    this.showAnimation();
+  }
+
+  showAnimation() {
+    this._renderer.setStyle(this._elRef.nativeElement, 'display', 'block');
+    setTimeout(() => {
+      this._renderer.addClass(this._elRef.nativeElement, 'show');
+      this._renderer.addClass(this._elRef.nativeElement, 'in');
+    }, 1);
+  }
+
+  hideAnimation() {
+    this._renderer.removeClass(this._elRef.nativeElement, 'in');
+    this._renderer.removeClass(this._elRef.nativeElement, 'show');
   }
 
   ngOnDestroy() {
-    this._renderer.removeClass(this._elRef.nativeElement, 'in');
-    this._renderer.removeClass(this._elRef.nativeElement, 'show');
     this._elRef.nativeElement.remove();
     if (this._elWithFocus && document.body.contains(this._elWithFocus)) {
       this._elWithFocus['focus'].apply(this._elWithFocus, []);

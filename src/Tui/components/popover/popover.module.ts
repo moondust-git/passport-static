@@ -1,12 +1,20 @@
 import {NgModule, ModuleWithProviders} from '@angular/core';
 
-import {TPopover, TPopoverCmt} from './popover';
+import {TPopover, TPopoverCmt, TTooltipCmt} from './popover';
 import {TPopoverConfig} from './popover-config';
+import {CommonModule} from "@angular/common";
 
 export {TPopover} from './popover';
 export {TPopoverConfig} from './popover-config';
 
-@NgModule({declarations: [TPopover, TPopoverCmt], exports: [TPopover], entryComponents: [TPopoverCmt]})
+@NgModule({
+  imports: [CommonModule],
+  declarations: [TPopover, TPopoverCmt, TTooltipCmt],
+  exports: [TPopover],
+  entryComponents: [TPopoverCmt, TTooltipCmt]
+})
 export class TPopoverModule {
-  static forRoot(): ModuleWithProviders { return {ngModule: TPopoverModule, providers: [TPopoverConfig]}; }
+  static forRoot(): ModuleWithProviders {
+    return {ngModule: TPopoverModule, providers: [TPopoverConfig]};
+  }
 }

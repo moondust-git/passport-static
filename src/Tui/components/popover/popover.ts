@@ -14,7 +14,7 @@ import {
   TemplateRef,
   ViewContainerRef,
   ComponentFactoryResolver,
-  NgZone
+  NgZone, AfterViewInit
 } from '@angular/core';
 
 import {listenToTriggers} from '../../util/triggers';
@@ -23,11 +23,11 @@ import {PopupService} from '../../util/popup';
 import {TPopoverConfig} from './popover-config';
 
 let nextId = 0;
-
+// "popover show popover-" + placement
 @Component({
   selector: 't-popover-cmt',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  host: {'[class]': '"popover show popover-" + placement', 'role': 'tooltip', '[id]': 'id'},
+  host: {'[class]': '"popover fade  popover-" + placement', 'role': 'tooltip', '[id]': 'id'},
   template: `
     <h3 class="popover-title">{{title}}</h3>
     <div class="popover-content">
@@ -35,10 +35,53 @@ let nextId = 0;
     </div>
   `
 })
-export class TPopoverCmt {
+export class TPopoverCmt implements AfterViewInit {
+  ngAfterViewInit(): void {
+    setTimeout(() => {
+      this.show();
+    }, 1);
+  }
+  constructor(private _eleref: ElementRef, private _renderer: Renderer2) {
+  }
+  show(): void {
+    this._renderer.addClass(this._eleref.nativeElement, 'show');
+  }
   @Input() placement: 'top' | 'bottom' | 'left' | 'right' = 'top';
   @Input() title: string;
   @Input() id: string;
+  @Input() type: string = 'popover';
+}
+
+
+@Component({
+  selector: 't-tooltip-cmt',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {'[class]': '"tooltip fade  tooltip-" + placement', 'role': 'tooltip', '[id]': 'id'},
+  template: `
+    <div class="tooltip-inner">
+      <ng-content></ng-content>
+    </div>
+  `
+})
+export class TTooltipCmt extends TPopoverCmt {
+  @Input() placement: 'top' | 'bottom' | 'left' | 'right' = 'top';
+  @Input() title: string;
+  @Input() id: string;
+  @Input() type: string = 'popover';
+
+  constructor(private _elerefs: ElementRef, private _renderers: Renderer2) {
+    super(_elerefs, _renderers);
+  }
+
+  show(): void {
+    this._renderers.addClass(this._elerefs.nativeElement, 'show');
+  }
+
+  ngAfterViewInit(): void {
+    setTimeout(() => {
+      this.show();
+    }, 1);
+  }
 }
 
 /**
@@ -50,14 +93,19 @@ export class TPopover implements OnInit, OnDestroy {
    * Content to be displayed as popover.
    */
   @Input() TPopover: string | TemplateRef<any>;
+
   /**
    * Title of a popover.
    */
   @Input() popoverTitle: string;
   /**
+   *
    * Placement of a popover. Accepts: "top", "bottom", "left", "right"
    */
   @Input() placement: 'top' | 'bottom' | 'left' | 'right';
+
+
+  @Input() type: 'popover' | 'tooltip';
   /**
    * Specifies events that should trigger. Supports a space separated list of event names.
    */
@@ -78,26 +126,14 @@ export class TPopover implements OnInit, OnDestroy {
 
   private _ngbPopoverWindowId = `ngb-popover-${nextId++}`;
   private _popupService: PopupService<TPopoverCmt>;
-  private _windowRef: ComponentRef<TPopoverCmt>;
+  private _windowPopRef: ComponentRef<TPopoverCmt>;
   private _unregisterListenersFn;
   private _zoneSubscription: any;
 
-  constructor(private _elementRef: ElementRef, private _renderer: Renderer2, injector: Injector,
-              componentFactoryResolver: ComponentFactoryResolver, viewContainerRef: ViewContainerRef, config: TPopoverConfig,
-              ngZone: NgZone) {
-    this.placement = config.placement;
-    this.triggers = config.triggers;
-    this.container = config.container;
-    this._popupService = new PopupService<TPopoverCmt>(
-      TPopoverCmt, injector, viewContainerRef, _renderer, componentFactoryResolver);
+  constructor(private _elementRef: ElementRef, private _renderer: Renderer2, private injector: Injector,
+              private componentFactoryResolver: ComponentFactoryResolver, private viewContainerRef: ViewContainerRef, private config: TPopoverConfig,
+              private ngZone: NgZone) {
 
-    this._zoneSubscription = ngZone.onStable.subscribe(() => {
-      if (this._windowRef) {
-        positionElements(
-          this._elementRef.nativeElement, this._windowRef.location.nativeElement, this.placement,
-          this.container === 'body');
-      }
-    });
   }
 
   /**
@@ -105,21 +141,22 @@ export class TPopover implements OnInit, OnDestroy {
    * The context is an optional value to be injected into the popover template when it is created.
    */
   open(context?: any) {
-    if (!this._windowRef) {
-      this._windowRef = this._popupService.open(this.TPopover, context);
-      this._windowRef.instance.placement = this.placement;
-      this._windowRef.instance.title = this.popoverTitle;
-      this._windowRef.instance.id = this._ngbPopoverWindowId;
+    if (!this._windowPopRef) {
+      this._windowPopRef = this._popupService.open(this.TPopover, context);
+      this._windowPopRef.instance.placement = this.placement;
+      this._windowPopRef.instance.title = this.popoverTitle;
+      this._windowPopRef.instance.type = this.type || 'popover';
+      this._windowPopRef.instance.id = this._ngbPopoverWindowId;
 
       this._renderer.setAttribute(this._elementRef.nativeElement, 'aria-describedby', this._ngbPopoverWindowId);
-
       if (this.container === 'body') {
-        window.document.querySelector(this.container).appendChild(this._windowRef.location.nativeElement);
+        window.document.querySelector(this.container).appendChild(this._windowPopRef.location.nativeElement);
       }
 
       // we need to manually invoke change detection since events registered via
       // Renderer::listen() are not picked up by change detection with the OnPush strategy
-      this._windowRef.changeDetectorRef.markForCheck();
+      this._windowPopRef.changeDetectorRef.markForCheck();
+      this._windowPopRef.instance.show();
       this.shown.emit();
     }
   }
@@ -128,10 +165,10 @@ export class TPopover implements OnInit, OnDestroy {
    * Closes an element’s popover. This is considered a “manual” triggering of the popover.
    */
   close(): void {
-    if (this._windowRef) {
+    if (this._windowPopRef) {
       this._renderer.removeAttribute(this._elementRef.nativeElement, 'aria-describedby');
       this._popupService.close();
-      this._windowRef = null;
+      this._windowPopRef = null;
       this.hidden.emit();
     }
   }
@@ -140,7 +177,7 @@ export class TPopover implements OnInit, OnDestroy {
    * Toggles an element’s popover. This is considered a “manual” triggering of the popover.
    */
   toggle(): void {
-    if (this._windowRef) {
+    if (this._windowPopRef) {
       this.close();
     } else {
       this.open();
@@ -151,10 +188,28 @@ export class TPopover implements OnInit, OnDestroy {
    * Returns whether or not the popover is currently being shown
    */
   isOpen(): boolean {
-    return this._windowRef != null;
+    return this._windowPopRef != null;
   }
 
   ngOnInit() {
+    if (!this.placement) this.placement = this.config.placement;
+    if (!this.triggers) this.triggers = this.config.triggers;
+    if (!this.container) this.container = this.config.container;
+    if (!this.type) this.type = this.config.type;
+    if (this.type === 'popover') {
+      this._popupService = new PopupService<TPopoverCmt>(
+        TPopoverCmt, this.injector, this.viewContainerRef, this._renderer, this.componentFactoryResolver);
+    } else {
+      this._popupService = new PopupService<TTooltipCmt>(
+        TTooltipCmt, this.injector, this.viewContainerRef, this._renderer, this.componentFactoryResolver);
+    }
+    this._zoneSubscription = this.ngZone.onStable.subscribe(() => {
+      if (this._windowPopRef) {
+        positionElements(
+          this._elementRef.nativeElement, this._windowPopRef.location.nativeElement, this.placement,
+          this.container === 'body');
+      }
+    });
     this._unregisterListenersFn = listenToTriggers(
       this._renderer, this._elementRef.nativeElement, this.triggers, this.open.bind(this), this.close.bind(this),
       this.toggle.bind(this));

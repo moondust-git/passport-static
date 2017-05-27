@@ -104,6 +104,13 @@
   display: block;
 }
 
+/* line 2, _popover.scss */
+.popover.fade {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
 /*!
  * Bootstrap v4.0.0-alpha.6 (https://getbootstrap.com)
  * Copyright 2011-2017 The Bootstrap Authors
@@ -5759,7 +5766,7 @@ button.close {
 }
 /* line 30, modules/bootstrap/_modal.scss */
 .modal.fade .modal-dialog {
-  transition: transform 0.3s ease-out;
+  transition: all 0.2s ease-out;
   transform: translate(0, -25%);
 }
 /* line 34, modules/bootstrap/_modal.scss */
@@ -5787,7 +5794,7 @@ button.close {
   flex-direction: column;
   background-color: #fff;
   background-clip: padding-box;
-  border: 1px solid rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: 0.3rem;
   outline: 0;
 }
@@ -5808,7 +5815,7 @@ button.close {
 }
 /* line 74, modules/bootstrap/_modal.scss */
 .modal-backdrop.show {
-  opacity: 0.5;
+  opacity: 0.2;
 }
 
 /* line 79, modules/bootstrap/_modal.scss */
@@ -10431,4 +10438,28 @@ a.text-gray-dark:focus, a.text-gray-dark:hover {
   .hidden-print {
     display: none !important;
   }
+}
+
+/* line 8, _Tmodal.scss */
+.modal.fade .modal-dialog {
+  transition: all 0.2s ease-out;
+  -moz-transform: scale(0.9, 0.9);
+  -ms-transform: scale(0.9, 0.9);
+  -webkit-transform: scale(0.9, 0.9);
+  transform: scale(0.9, 0.9);
+}
+/* line 13, _Tmodal.scss */
+.modal.show .modal-dialog {
+  -moz-transform: scale(1, 1);
+  -ms-transform: scale(1, 1);
+  -webkit-transform: scale(1, 1);
+  transform: scale(1, 1);
+}
+
+/* line 20, _Tmodal.scss */
+.modal-content {
+  background-color: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 0.3rem;
+  outline: none;
 }

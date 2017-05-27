@@ -1,6 +1,6 @@
 .sidenav {
   position: fixed;
-  z-index: 1032;
+  z-index: $zindex-sidenav;
   background-color: white;
   @include box-shadow(0 0 5px 1px rgba(#000, 0.3));
   @include transition(all 0.3s);
@@ -48,7 +48,7 @@
   right: 0;
   bottom: 0;
   display: none;
-  z-index: 1032;
+  z-index: $zindex-sidenav-shadow;
   &.fadebg {
     background-color: rgba(#000, 0.1);
   }

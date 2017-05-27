@@ -10,4 +10,5 @@ export class TPopoverConfig {
   placement: 'top' | 'bottom' | 'left' | 'right' = 'top';
   triggers = 'hover';
   container: string;
+  type: 'tooltip' | 'popover' = 'popover';
 }
