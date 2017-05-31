@@ -10,6 +10,7 @@ export function OnChange(defaultValue?: any): any {
       set(value: any): void {
         const prevValue = this[_key];
         this[_key] = value;
+        console.log(value);
         if (prevValue !== value && this[propertyKey + sufix]) {
           this[propertyKey + sufix].emit(value);
         }

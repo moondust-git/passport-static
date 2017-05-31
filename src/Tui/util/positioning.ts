@@ -145,7 +145,6 @@ const positionService = new Positioning();
 export function positionElements(
     hostElement: HTMLElement, targetElement: HTMLElement, placement: string, appendToBody?: boolean): void {
   const pos = positionService.positionElements(hostElement, targetElement, placement, appendToBody);
-
   targetElement.style.top = `${pos.top}px`;
   targetElement.style.left = `${pos.left}px`;
 }

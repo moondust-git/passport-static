@@ -1,4 +1,4 @@
-import {Component, Input, ViewEncapsulation} from "@angular/core";
+import {Component, EventEmitter, Input, Output, ViewEncapsulation} from "@angular/core";
 import {animate, state, style, transition, trigger} from "@angular/animations";
 @Component({
   moduleId: module.id,
@@ -42,6 +42,12 @@ export class TCollapse {
     return this._active;
   }
 
+  @Output('show')
+  onShow = new EventEmitter<void>();
+
+  @Output('hide')
+  OnHide = new EventEmitter<void>();
+
   set active(value) {
     this._active = value;
   }
@@ -54,16 +60,21 @@ export class TCollapse {
   }
 
   show() {
-    this.active = true;
+    this._active = true;
+    this.onShow.emit();
   }
 
   hide() {
-    this.active = false;
+    this._active = false;
+    this.OnHide.emit();
   }
 
-
   toggle() {
-    this.active = !this.active;
+    if (this._active) {
+      this.hide();
+    } else {
+      this.show();
+    }
   }
 
   /**

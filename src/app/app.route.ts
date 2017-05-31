@@ -5,7 +5,7 @@ import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 const routes: Routes = [
   {path: '', redirectTo: 'index.html', pathMatch: 'full'},
-  // {path: 'components', loadChildren: './route/component-demo/component-demo.module#ComponentDemoModule'},
+  {path: 'components', loadChildren: './route/component-demo/component-demo.module#ComponentDemoModule'},
   {path: 'index.html', loadChildren: './route/index/index.module#IndexModule'},
   {path: 'oauth.html', loadChildren: './route/oauth/oauth.module#OauthModule'},
 ];

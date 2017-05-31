@@ -1,0 +1,12 @@
+<h1>
+  sidenav works!
+</h1>
+
+<Tsidenav #sidenav [width]="240" placement="left" [fade]="true" [fadeClose]="true">
+  <button class="btn btn-success" (click)="sidenav.hide()">关闭</button>
+</Tsidenav>
+
+<button class="btn btn-success" (click)="sidenav.open()">nav</button>
+<div class="container">
+  <router-outlet></router-outlet>
+</div>

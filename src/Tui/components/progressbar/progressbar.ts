@@ -6,7 +6,7 @@ import {TProgressbarConfig} from './progressbar-config';
  * Directive that can be used to provide feedback on the progress of a workflow or an action.
  */
 @Component({
-  selector: 'ngb-progressbar',
+  selector: 'TProgressbar',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <div class="progress">

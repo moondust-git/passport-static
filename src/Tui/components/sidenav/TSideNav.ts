@@ -40,7 +40,17 @@ export class TSidenav implements AfterContentInit, OnDestroy, OnInit {
   @ViewChild("shadow")
   private _shadow: ElementRef;
 
-  _isOpen = false;
+  private _active = false;
+
+
+  get active(): boolean {
+    return this._active;
+  }
+
+  @Input('active')
+  set active(value: boolean) {
+    this._active = value;
+  }
 
   @Output('afterOpen') onOpen = new EventEmitter<void>(); //打开回掉
   @Output('afterHide') onHide = new EventEmitter<void>(); //关闭回掉
@@ -60,7 +70,7 @@ export class TSidenav implements AfterContentInit, OnDestroy, OnInit {
   }
 
   open(): void {
-    if (!this._isOpen) {
+    if (!this._active) {
       this._renderer.addClass(this._sidenav.nativeElement, 'open');
       if (this.fade) {
         this._renderer.addClass(this._shadow.nativeElement, 'open');
@@ -71,8 +81,16 @@ export class TSidenav implements AfterContentInit, OnDestroy, OnInit {
     }
   }
 
+  toggle() {
+    if (this._active) {
+      this.hide()
+    } else {
+      this.open();
+    }
+  }
+
   hide(): void {
-    if (this._isOpen) {
+    if (this._active) {
       this._renderer.removeClass(this._sidenav.nativeElement, 'open');
       this._renderer.removeClass(this._shadow.nativeElement, 'open');
       this._onTransitionEnd();
@@ -86,12 +104,12 @@ export class TSidenav implements AfterContentInit, OnDestroy, OnInit {
   }
 
   private _onTransitionEnd() {
-    if (this._isOpen) {
+    if (this._active) {
       this.onHide.emit();
-    } else if (!this._isOpen) {
+    } else if (!this._active) {
       this.onOpen.emit();
     }
-    this._isOpen = !this._isOpen;
+    this._active = !this._active;
   }
 
 

@@ -23,4 +23,8 @@ export class TimepickerConfig {
   public min: number = void 0;
   /** maximum time user can select */
   public max: number = void 0;
+
+  placement = 'bottom-left';
+  triggers: string = 'click';
+  format: string = 'HH:mm'
 }

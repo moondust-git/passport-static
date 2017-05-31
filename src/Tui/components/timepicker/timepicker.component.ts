@@ -1,5 +1,5 @@
 // tslint:disable max-file-line-count
-import {Component, Input, OnInit, forwardRef} from '@angular/core';
+import {Component, Input, OnInit, forwardRef, ElementRef, Output, EventEmitter} from '@angular/core';
 import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
 import {TimepickerConfig} from './timepicker.config';
 
@@ -28,6 +28,7 @@ function addMinutes(date: any, minutes: number): Date {
 @Component({
   selector: 'Ttimepicker',
   templateUrl: './timepicker.html',
+  host: {'(mouseleave)': 'mouseleave($event)', '(mouseenter)': 'mouseenter($event)'},
   providers: [TIMEPICKER_CONTROL_VALUE_ACCESSOR]
 })
 export class TimepickerComponent implements ControlValueAccessor, OnInit {
@@ -55,6 +56,10 @@ export class TimepickerComponent implements ControlValueAccessor, OnInit {
   public get showMeridian(): boolean {
     return this._showMeridian;
   }
+
+
+  @Output()
+  blur = new EventEmitter<Date>();
 
   public set showMeridian(value: boolean) {
     this._showMeridian = value;
@@ -103,7 +108,7 @@ export class TimepickerComponent implements ControlValueAccessor, OnInit {
 
   protected config: TimepickerConfig;
 
-  public constructor(_config: TimepickerConfig) {
+  public constructor(_config: TimepickerConfig, private _eleref: ElementRef) {
     this.config = _config;
     Object.assign(this, _config);
   }
@@ -133,7 +138,7 @@ export class TimepickerComponent implements ControlValueAccessor, OnInit {
     this.selected = v ? new Date(v) : void 0;
   }
 
-  public registerOnChange(fn: (_: any) => {}): void {
+  public registerOnChange(fn: (_: any) => any): void {
     this.onChange = fn;
   }
 
@@ -183,6 +188,23 @@ export class TimepickerComponent implements ControlValueAccessor, OnInit {
       this.hours = this.pad(this.hours);
     }
   }
+
+  private isactive: boolean = false;
+  private hideTimeout: any;
+
+  public mouseleave() {
+    if (this.isactive) {
+      this.hideTimeout = setTimeout(() => {
+        this.blur.emit(this._selected);
+      }, 300);
+    }
+  }
+
+  public mouseenter() {
+    this.isactive = true;
+    clearTimeout(this.hideTimeout);
+  }
+
 
   public updateMinutes(): void {
     if (this.readonlyInput) {
