@@ -7,7 +7,7 @@
           aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" (click)="sidenav.toggle()">
     <span class="navbar-toggler-icon"></span>
   </button>
-  <a class="navbar-brand text-center">MoondustUI</a>
+  <a class="navbar-brand text-center" (click)="sidenav.toggle()">MoondustUI</a>
   <TCollapse #nav class="collapse navbar-collapse show" id="navbarNav" [active]="true">
     <ul class="navbar-nav">
       <li class="nav-item" routerLinkActive="active">
@@ -26,42 +26,5 @@
     </ul>
   </TCollapse>
 </nav>
-<Tsidenav #sidenav [width]="240" placement="left" [fade]="true" [fadeClose]="true">
-  <div class="list-group">
-    <a class="list-group-item list-group-item-success" href="javascript:;" routerLink="components/popover"
-       routerLinkActive="active">
-      popover
-    </a>
-    <a class="list-group-item list-group-item-success" href="javascript:;" routerLink="components/modal"
-       routerLinkActive="active">
-      modal
-    </a>
-    <a class="list-group-item list-group-item-success" href="javascript:;" routerLink="components/confirm"
-       routerLinkActive="active">
-      confirm
-    </a>
-    <a class="list-group-item list-group-item-success" href="javascript:;" routerLink="components/tabs"
-       routerLinkActive="active">
-      tabs
-    </a>
-    <a class="list-group-item list-group-item-success" href="javascript:;" routerLink="components/sidenav"
-       routerLinkActive="active">
-      sidenav
-    </a>
-    <a class="list-group-item list-group-item-success" href="javascript:;" routerLink="components/timepicker"
-       routerLinkActive="active">
-      timepicker
-    </a>
-    <a class="list-group-item list-group-item-success" href="javascript:;" routerLink="components/collpase"
-       routerLinkActive="active">
-      collpase
-    </a>
-    <a class="list-group-item list-group-item-success" href="javascript:;" routerLink="components/waterfull"
-       routerLinkActive="active">
-      waterfull
-    </a>
-
-  </div>
-</Tsidenav>
 <router-outlet></router-outlet>
 

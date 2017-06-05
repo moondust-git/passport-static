@@ -9,7 +9,7 @@ import {
   TemplateRef
 } from '@angular/core';
 
-import {ContentRef} from '../../util/popup';
+import {ContentRef} from '../../util/pop';
 import {isDefined, isString} from '../../util/util';
 
 import {NgbModalBackdrop} from './modal-backdrop';
@@ -88,8 +88,7 @@ export class TModalStack {
       return new ContentRef([[document.createTextNode(`${content}`)]]);
     } else {
       const contentCmptFactory = moduleCFR.resolveComponentFactory(content);
-      const modalContentInjector =
-        ReflectiveInjector.resolveAndCreate([{provide: TActiveModal, useValue: context}], contentInjector);
+      const modalContentInjector = ReflectiveInjector.resolveAndCreate([{provide: TActiveModal, useValue: context}], contentInjector);
       const componentRef = contentCmptFactory.create(modalContentInjector);
       this._applicationRef.attachView(componentRef.hostView);
       return new ContentRef([[componentRef.location.nativeElement]], componentRef.hostView, componentRef);

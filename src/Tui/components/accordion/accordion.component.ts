@@ -1,26 +1,24 @@
-import { Component, Input } from '@angular/core';
-import { AccordionPanelComponent } from './accordion-group.component';
-import { AccordionConfig } from './accordion.config';
+import {Component, Input} from '@angular/core';
+import {AccordionPanelComponent} from './accordion-group.component';
 
 /** Displays collapsible content panels for presenting information in a limited amount of space. */
 @Component({
-  selector: 'accordion',
-  template: `<ng-content></ng-content>`,
+  selector: 'Taccordion',
+  template: `
+    <ng-content></ng-content>`,
   // tslint:disable-next-line
   host: {
-    '[class.card]': 'true',
-    '[attr.aria-multiselectable]':'closeOthers',
-    role: 'tablist'
+    '[attr.aria-multiselectable]': 'closeOthers',
   }
 })
 export class AccordionComponent {
+
   /** if `true` expanding one item will close all others */
-  @Input() public closeOthers: boolean;
+  @Input() public closeOthers: boolean = true;
 
   protected groups: AccordionPanelComponent[] = [];
 
-  public constructor(config: AccordionConfig) {
-    Object.assign(this, config);
+  public constructor() {
   }
 
   public closeOtherPanels(openGroup: AccordionPanelComponent): void {

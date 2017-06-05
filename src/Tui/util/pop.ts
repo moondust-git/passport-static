@@ -17,7 +17,6 @@ export class PopupService<T> {
   private _windowFactory: ComponentFactory<T>;
   private _windowRef: ComponentRef<T>;
   private _contentRef: ContentRef;
-
   constructor(
       type: any, private _injector: Injector, private _viewContainerRef: ViewContainerRef, private _renderer: Renderer2,
       componentFactoryResolver: ComponentFactoryResolver) {

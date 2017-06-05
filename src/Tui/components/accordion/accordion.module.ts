@@ -3,7 +3,6 @@ import {ModuleWithProviders, NgModule} from "@angular/core";
 
 import {AccordionPanelComponent} from "./accordion-group.component";
 import {AccordionComponent} from "./accordion.component";
-import {AccordionConfig} from "./accordion.config";
 import {TCollapseModule} from "../collapse/collapse.module";
 
 @NgModule({
@@ -13,6 +12,6 @@ import {TCollapseModule} from "../collapse/collapse.module";
 })
 export class AccordionModule {
   public static forRoot(): ModuleWithProviders {
-    return {ngModule: AccordionModule, providers: [AccordionConfig]};
+    return {ngModule: AccordionModule, providers: []};
   }
 }

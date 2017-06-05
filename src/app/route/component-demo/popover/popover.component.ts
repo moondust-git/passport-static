@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-popover',
@@ -6,10 +6,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./popover.component.css']
 })
 export class PopoverComponent implements OnInit {
-
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
   }
 
+
+  toTost() {
+  }
 }

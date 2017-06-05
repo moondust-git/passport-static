@@ -19,7 +19,7 @@ import {
 
 import {listenToTriggers} from '../../util/triggers';
 import {positionElements} from '../../util/positioning';
-import {PopupService} from '../../util/popup';
+import {PopupService} from '../../util/pop';
 import {TPopoverConfig} from './popover-config';
 
 let nextId = 0;

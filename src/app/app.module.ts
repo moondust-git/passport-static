@@ -8,7 +8,6 @@ import "rxjs/add/operator/map";
 import "rxjs/add/operator/catch";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {TSidenavModule} from "../Tui/components/sidenav/sidenav.module";
-import {TTimepickerModule} from "../Tui/components/timepicker/timepicker.module";
 import {TCollapseModule} from "../Tui/components/collapse/collapse.module";
 
 

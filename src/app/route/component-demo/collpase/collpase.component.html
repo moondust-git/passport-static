@@ -1,174 +1,54 @@
-<h1>collapse</h1>
-<div class="card">
-  <div class="card-block">
-    <div class="card-title">collapse</div>
-
-    <div class="card-text">
-      <button class="btn btn-danger">
-        collapse show
-      </button>
-      <div class="list-group">
-        <a class="list-group-item" (click)="collapse.toggle()">a</a>
-        <TCollapse #collapse>
-          <h1>tabs</h1>
-          <div class="card">
-            <div class="card-block">
-              <div class="card-title">tabs</div>
-              <div class="card-subtitle">
-                This is some text within a card block.
-              </div>
-              <div class="card-text">
-
-                <tabset>
-                  <tab heading='Tab 1'>Tab 1 content</tab>
-                  <tab>
-                    <ng-template tabHeading>Tab 2</ng-template>
-                    Tab 2 content
-                  </tab>
-                </tabset>
-              </div>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12">
+      <h1>collapse</h1>
+      <Taccordion>
+        <Taccordion-group heading="Static Header, initially expanded">
+          This content is straight in the template.
+        </Taccordion-group>
+        <Taccordion-group #group>
+          <div accordion-heading>
+            <div class="card-header">
+              I can have markup, too!
+              <i class="pull-right float-xs-right glyphicon"
+                 [ngClass]="{'glyphicon-chevron-down': group?.isOpen, 'glyphicon-chevron-right': !group?.isOpen}"></i>
             </div>
           </div>
-
-        </TCollapse>
-        <a class="list-group-item" (click)="collapse1.toggle()">a</a>
-        <TCollapse #collapse1>
-          <h1>tabs</h1>
-          <div class="card">
-            <div class="card-block">
-              <div class="card-title">tabs</div>
-              <div class="card-subtitle">
-                This is some text within a card block.
-              </div>
-              <div class="card-text">
-
-                <tabset>
-                  <tab heading='Tab 1'>Tab 1 content</tab>
-                  <tab>
-                    <ng-template tabHeading>Tab 2</ng-template>
-                    Tab 2 content
-                  </tab>
-                </tabset>
-              </div>
+          This is just some content to illustrate fancy headings.
+        </Taccordion-group>
+        <Taccordion-group #group>
+          <div accordion-heading>
+            <div class="card-header">
+              I can have markup, too!
+              <i class="pull-right float-xs-right glyphicon"
+                 [ngClass]="{'glyphicon-chevron-down': group?.isOpen, 'glyphicon-chevron-right': !group?.isOpen}"></i>
             </div>
           </div>
-
-        </TCollapse>
-        <a class="list-group-item" (click)="collapse2.toggle()">a</a>
-        <TCollapse #collapse2>
-          <h1>tabs</h1>
-          <div class="card">
-            <div class="card-block">
-              <div class="card-title">tabs</div>
-              <div class="card-subtitle">
-                This is some text within a card block.
-              </div>
-              <div class="card-text">
-
-                <tabset>
-                  <tab heading='Tab 1'>Tab 1 content</tab>
-                  <tab>
-                    <ng-template tabHeading>Tab 2</ng-template>
-                    Tab 2 content
-                  </tab>
-                </tabset>
-              </div>
+          This is just some content to illustrate fancy headings.
+        </Taccordion-group>
+        <Taccordion-group #group>
+          <div accordion-heading>
+            <div class="card-header">
+              I can have markup, too!
+              <i class="pull-right float-xs-right glyphicon"
+                 [ngClass]="{'glyphicon-chevron-down': group?.isOpen, 'glyphicon-chevron-right': !group?.isOpen}"></i>
             </div>
           </div>
-
-        </TCollapse>
-        <a class="list-group-item" (click)="collapse3.toggle()">a</a>
-        <TCollapse #collapse3>
-          <h1>tabs</h1>
-          <div class="card">
-            <div class="card-block">
-              <div class="card-title">tabs</div>
-              <div class="card-subtitle">
-                This is some text within a card block.
-              </div>
-              <div class="card-text">
-
-                <tabset>
-                  <tab heading='Tab 1'>Tab 1 content</tab>
-                  <tab>
-                    <ng-template tabHeading>Tab 2</ng-template>
-                    Tab 2 content
-                  </tab>
-                </tabset>
-              </div>
+          <div class="card-block">
+            This is just some content to illustrate fancy headings.
+          </div>
+        </Taccordion-group>
+        <Taccordion-group #group>
+          <div accordion-heading>
+            <div class="card-header">
+              I can have markup, too!
+              <i class="pull-right float-xs-right glyphicon"
+                 [ngClass]="{'glyphicon-chevron-down': group?.isOpen, 'glyphicon-chevron-right': !group?.isOpen}"></i>
             </div>
           </div>
-
-        </TCollapse>
-        <a class="list-group-item" (click)="collapse4.toggle()">a</a>
-        <TCollapse #collapse4>
-          <h1>tabs</h1>
-          <div class="card">
-            <div class="card-block">
-              <div class="card-title">tabs</div>
-              <div class="card-subtitle">
-                This is some text within a card block.
-              </div>
-              <div class="card-text">
-
-                <tabset>
-                  <tab heading='Tab 1'>Tab 1 content</tab>
-                  <tab>
-                    <ng-template tabHeading>Tab 2</ng-template>
-                    Tab 2 content
-                  </tab>
-                </tabset>
-              </div>
-            </div>
-          </div>
-
-        </TCollapse>
-        <a class="list-group-item" (click)="collapse5.toggle()">a</a>
-        <TCollapse #collapse5>
-          <h1>tabs</h1>
-          <div class="card">
-            <div class="card-block">
-              <div class="card-title">tabs</div>
-              <div class="card-subtitle">
-                This is some text within a card block.
-              </div>
-              <div class="card-text">
-
-                <tabset>
-                  <tab heading='Tab 1'>Tab 1 content</tab>
-                  <tab>
-                    <ng-template tabHeading>Tab 2</ng-template>
-                    Tab 2 content
-                  </tab>
-                </tabset>
-              </div>
-            </div>
-          </div>
-
-        </TCollapse>
-      </div>
+          This is just some content to illustrate fancy headings.
+        </Taccordion-group>
+      </Taccordion>
     </div>
-
   </div>
 </div>
-
-
-<accordion>
-  <accordion-group heading="Static Header, initially expanded">
-    This content is straight in the template.
-  </accordion-group>
-  <accordion-group #group>
-    <div accordion-heading>
-      I can have markup, too!
-      <i class="pull-right float-xs-right glyphicon"
-         [ngClass]="{'glyphicon-chevron-down': group?.isOpen, 'glyphicon-chevron-right': !group?.isOpen}"></i>
-    </div>
-    This is just some content to illustrate fancy headings.
-  </accordion-group>
-  <accordion-group heading="Content 1">
-    <p>Content 1</p>
-  </accordion-group>
-  <accordion-group heading="Content 2">
-    <p>Content 2</p>
-  </accordion-group>
-</accordion>

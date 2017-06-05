@@ -1,1 +1,42 @@
-<router-outlet></router-outlet>
+<Tsidenav #sidenav>
+  <div sidenav>
+    <div class="list-group" style="width: 240px;">
+      <a class="list-group-item " href="javascript:;" routerLink="/components/popover"
+         routerLinkActive="active">
+        popover
+      </a>
+      <a class="list-group-item " href="javascript:;" routerLink="/components/modal"
+         routerLinkActive="active">
+        modal
+      </a>
+      <a class="list-group-item " href="javascript:;" routerLink="/components/confirm"
+         routerLinkActive="active">
+        confirm
+      </a>
+      <a class="list-group-item " href="javascript:;" routerLink="/components/tabs"
+         routerLinkActive="active">
+        tabs
+      </a>
+      <a class="list-group-item " href="javascript:;" routerLink="/components/sidenav"
+         routerLinkActive="active">
+        sidenav
+      </a>
+      <a class="list-group-item " href="javascript:;" routerLink="/components/timepicker"
+         routerLinkActive="active">
+        timepicker
+      </a>
+      <a class="list-group-item " href="javascript:;" routerLink="/components/collpase"
+         routerLinkActive="active">
+        collpase
+      </a>
+      <a class="list-group-item " href="javascript:;" routerLink="/components/waterfull"
+         routerLinkActive="active">
+        waterfull
+      </a>
+    </div>
+  </div>
+  <div content>
+    <button class="btn btn-success" (click)="sidenav.toggle()">shide</button>
+    <router-outlet></router-outlet>
+  </div>
+</Tsidenav>

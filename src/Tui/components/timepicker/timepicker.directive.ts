@@ -18,7 +18,6 @@ import {TimepickerComponent} from "./timepicker.component";
 import {TimepickerConfig} from "./timepicker.config";
 import {listenToTriggers} from "../../util/triggers";
 import {DateFormatter} from "../../util/intl";
-import {OnChange} from "../../util/decorators";
 import {ControlValueAccessor} from "@angular/forms";
 
 @Directive({
@@ -41,11 +40,11 @@ export class TimepickerDirective implements OnInit, OnDestroy, ControlValueAcces
 
   //
   private _onChange = (_: any) => {
-  };
+  }
   private _onTouched = () => {
-  };
+  }
   private _validatorChange = () => {
-  };
+  }
 
   constructor(private _elRef: ElementRef, private _vcRef: ViewContainerRef,
               private _renderer: Renderer2, private _cfr: ComponentFactoryResolver, ngZone: NgZone, private config: TimepickerConfig, @Inject(LOCALE_ID) private _locale: string) {
@@ -109,16 +108,13 @@ export class TimepickerDirective implements OnInit, OnDestroy, ControlValueAcces
   }
 
   registerOnChange(fn: any): void {
-    console.log('asdas')
   }
 
   registerOnTouched(fn: any): void {
-    console.log('registerOnTouched')
   }
 
 
   setDisabledState(isDisabled: boolean): void {
-    console.log('setDisabledState')
   }
 
   private _writeModelValue(model: Date) {
@@ -150,7 +146,6 @@ export class TimepickerDirective implements OnInit, OnDestroy, ControlValueAcces
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    console.log('change')
   }
 
   ngOnDestroy(): void {

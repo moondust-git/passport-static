@@ -12,10 +12,10 @@ import {TActiveModal} from "../modal/modal-ref";
     <div class="modal-body">
       <p [innerHtml]="content"></p>
     </div>
-    <div class="modal-footer d-flex justify-content-between">
-      <button type="button" *ngIf="isConfirm" class="btn btn-secondary align-self-start" (click)="activeModal.dismiss('cancel')">取消
+    <div class="modal-footer ">
+      <button type="button" class="btn btn-success" (click)="activeModal.close('ok')">确认</button>
+      <button type="button" *ngIf="isConfirm" class="btn btn-secondary " (click)="activeModal.dismiss('cancel')">取消
       </button>
-      <button type="button"  class="btn btn-success" (click)="activeModal.close('ok')">确认</button>
     </div>
   `
 })

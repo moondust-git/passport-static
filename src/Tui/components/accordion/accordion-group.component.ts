@@ -2,6 +2,7 @@ import {
   Component, HostBinding, Inject, Input, OnDestroy, OnInit
 } from '@angular/core';
 import {AccordionComponent} from './accordion.component';
+import {animate, state, style, transition, trigger} from "@angular/animations";
 
 /*
  * ### Accordion heading
@@ -11,29 +12,21 @@ import {AccordionComponent} from './accordion.component';
  * */
 
 @Component({
-  selector: 'accordion-group, accordion-panel',
+  selector: 'Taccordion-group',
   template: `
-    <div class="card-header" (click)="toggleOpen($event)">
-      <div *ngIf="heading" [ngClass]="{'text-muted': isDisabled}">{{heading}}</div>
+    <div (click)="toggleOpen($event)" style="cursor: pointer">
       <ng-content select="[accordion-heading]"></ng-content>
     </div>
     <TCollapse [active]="isOpen">
-      <div class="panel-body card-block" role="tabpanel">
-        <ng-content></ng-content>
-      </div>
+      <ng-content></ng-content>
     </TCollapse>
-  `,
-
+  `
 })
 export class AccordionPanelComponent implements OnInit, OnDestroy {
-  /** Clickable text in accordion's group header, check `accordion heading` below for using html in header */
-  @Input() public heading: string;
   /** if <code>true</code> — disables accordion group */
   @Input() public isDisabled: boolean;
 
-  // Questionable, maybe .panel-open should be on child div.panel element?
   /** Is accordion group open or closed */
-  @HostBinding('class.panel-open')
   @Input()
   public get isOpen(): boolean {
     return this._isOpen;
@@ -47,6 +40,7 @@ export class AccordionPanelComponent implements OnInit, OnDestroy {
   }
 
   protected _isOpen: boolean;
+
   protected accordion: AccordionComponent;
 
   public constructor(@Inject(AccordionComponent) accordion: AccordionComponent) {

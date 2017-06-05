@@ -18,8 +18,6 @@ import {TTimepickerModule} from "../../../Tui/components/timepicker/timepicker.m
 import {CollpaseComponent} from "./collpase/collpase.component";
 import {TCollapseModule} from "../../../Tui/components/collapse/collapse.module";
 import {AccordionModule} from "../../../Tui/components/accordion/accordion.module";
-import {WaterfullComponent} from './waterfull/waterfull.component';
-import {WaterfullDirective, WaterfullItemDirective} from './waterfull/waterfull.directive';
 
 @NgModule({
   imports: [
@@ -44,15 +42,21 @@ import {WaterfullDirective, WaterfullItemDirective} from './waterfull/waterfull.
           {path: 'tabs', component: TabsComponent},
           {path: 'sidenav', component: SidenavComponent},
           {path: 'timepicker', component: TimepickerComponent},
-          {path: 'collpase', component: CollpaseComponent},
-          {path: 'waterfull', component: WaterfullComponent},
+          {path: 'collpase', component: CollpaseComponent}
         ]
       }
     ])
   ],
-  declarations: [ComponentDemoComponent, PopoverComponent, ModalComponent, ConfirmComponent, TabsComponent, SidenavComponent, TimepickerComponent, CollpaseComponent,
-    WaterfullComponent,
-    WaterfullDirective, WaterfullItemDirective]
+  declarations: [
+    ComponentDemoComponent,
+    PopoverComponent,
+    ModalComponent,
+    ConfirmComponent,
+    TabsComponent,
+    SidenavComponent,
+    TimepickerComponent,
+    CollpaseComponent
+  ]
 })
 export class ComponentDemoModule {
 }
